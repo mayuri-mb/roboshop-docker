@@ -1,0 +1,20 @@
+services:
+  catalogue:
+    build: ./catalogue
+    image: mayurim334/catalogue:1.0.0
+    container_name: catalogue
+    depends_on:
+    - mongodb
+  mongodb:
+    build: ./mongodb #it moves to mongodb directory 
+    image: mayurim334/mongodb:1.0.0 #docker build -d mayurim334/mongodb:1.0.0
+    container_name: mongodb
+  network:
+    default:
+      driver: bridge
+      name: roboshop
+      external: false #if true, we need to create network manually, else it will only create network
+
+
+
+
