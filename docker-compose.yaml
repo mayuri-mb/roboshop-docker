@@ -5,10 +5,35 @@ services:
     container_name: catalogue
     depends_on:
     - mongodb
+  user:
+    build: ./user
+    image: mayurim334/user:1.0.0 
+    container_id: user
+    depends-on:
+    - redis
+    - mongodb 
+  cart:
+    build: ./cart
+    image: mayurim334/cart:1.0.0
+    container_name: cart
+    depends_on:
+    - redis
+    - catalogue
+  frontend:
+    build: ./frontend
+    image: mayurim334/frontend:1.0.0
+    container_name: frontend
+    depends_on:
+    - catalogue
+    - user 
+    - cart   
   mongodb:
     build: ./mongodb #it moves to mongodb directory 
     image: mayurim334/mongodb:1.0.0 #docker build -d mayurim334/mongodb:1.0.0
     container_name: mongodb
+  redis:
+    image: redis:7.0
+    container_name: redis
 networks:
   default:
     driver: bridge
