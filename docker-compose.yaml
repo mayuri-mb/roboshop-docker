@@ -26,6 +26,22 @@ services:
     depends_on:
     - mysql
     - cart  
+  payment:
+    build: ./payment
+    image: mayurim334/payment:1.0.0
+    container_name: payment
+    environment:
+      CART_HOST="cart"
+      CART_PORT="8080"
+      USER_HOST="user"
+      USER_PORT="8080"
+      AMQP_HOST="rabbitmq"
+      AMQP_USER="roboshop"
+      AMQP_PASS="roboshop123"
+    depends_on:
+    - rabbitmq
+    - cart
+    - user  
   frontend:
     build: ./frontend
     image: mayurim334/frontend:1.0.0
@@ -36,7 +52,8 @@ services:
     - catalogue
     - user 
     - cart 
-    - shipping  
+    - shipping 
+    - payment 
   mongodb:
     build: ./mongodb #it moves to mongodb directory 
     image: mayurim334/mongodb:1.0.0 #docker build -d mayurim334/mongodb:1.0.0
@@ -48,6 +65,13 @@ services:
     build: ./mysql
     image: mayurim334/mysql:1.0.0
     container_name: mysql
+  rabbitmq:
+    image: rabbitmq:3
+    environment:
+      RABBITMQ_DEFAULT_USER:roboshop
+      RABBITMQ_DEFAULT_PASS:roboshop123
+    container_id: rabbitmq
+
 networks:
   default:
     driver: bridge
