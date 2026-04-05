@@ -8,7 +8,7 @@ services:
   user:
     build: ./user
     image: mayurim334/user:1.0.0 
-    container_id: user
+    container_name: user
     depends_on:
     - redis
     - mongodb 
