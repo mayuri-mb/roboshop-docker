@@ -9,7 +9,7 @@ services:
     build: ./mongodb #it moves to mongodb directory 
     image: mayurim334/mongodb:1.0.0 #docker build -d mayurim334/mongodb:1.0.0
     container_name: mongodb
-network:
+networks:
   default:
     driver: bridge
     name: roboshop
