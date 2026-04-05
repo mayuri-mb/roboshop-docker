@@ -70,7 +70,7 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: "roboshop"
       RABBITMQ_DEFAULT_PASS: "roboshop123"
-    container_id: rabbitmq
+    container_name: rabbitmq
 networks:
   default:
     driver: bridge
