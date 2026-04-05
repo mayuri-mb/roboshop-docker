@@ -9,7 +9,7 @@ services:
     build: ./user
     image: mayurim334/user:1.0.0 
     container_id: user
-    depends-on:
+    depends_on:
     - redis
     - mongodb 
   cart:
