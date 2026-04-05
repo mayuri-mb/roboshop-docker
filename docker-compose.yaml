@@ -19,6 +19,13 @@ services:
     depends_on:
     - redis
     - catalogue
+  shipping:
+    build: ./shipping
+    image: mayurim334/shipping:1.0.0
+    container_name: shipping
+    depends_on:
+    - mysql
+    - cart  
   frontend:
     build: ./frontend
     image: mayurim334/frontend:1.0.0
@@ -28,7 +35,8 @@ services:
     depends_on:
     - catalogue
     - user 
-    - cart   
+    - cart 
+    - shipping  
   mongodb:
     build: ./mongodb #it moves to mongodb directory 
     image: mayurim334/mongodb:1.0.0 #docker build -d mayurim334/mongodb:1.0.0
