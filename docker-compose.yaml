@@ -84,7 +84,7 @@ networks:
     driver: bridge
     name: roboshop
     external: false #if true, we need to create network manually, else it will only create network
-voulmes:
+volumes:
   mongodb:     #docker volume create mongodb
   redis:
   rabbitmq:
